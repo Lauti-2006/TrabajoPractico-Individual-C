@@ -10,25 +10,10 @@ typedef struct
     int edad;
 } Estudiante;
 
-typedef struct
-{
-    Estudiante *data;
-    int cantidadGuardados;
-    int capacidad;
-    int next_id;
-} Estudiantes;
+// Funciones Basicas
 
-// Inicializacion / Destruccion
-void inicializarListaDeEstudiantes(Estudiantes *lista);
-void vaciarListaDeEstudiantes(Estudiantes *lista);
-
-// CRUD Estudiante
-int altaEstudiante(Estudiantes *lista, const char *nombre, int edad);                         // Devuelve el ID asignado
-bool bajaEstudiante(Estudiantes *lista, int id);                                              // Devuelve true si se borro correctamente
-bool modificarEstudiante(Estudiantes *lista, int id, const char *nuevoNombre, int nuevaEdad); // Devuelve true si se modifico correctamente
-
-// Utilidades
-void listarEstudiantes(const Estudiantes *lista);
-int buscarEstudiantePorNombre(const Estudiantes *lista, const char *nombre); // Devuelve la cantidad de estudiantes encontrados con el nombre dado
+void altaEstudiante(Estudiante *estudiante, int id, const char *nombre, int edad);
+void mostrarEstudiante(const Estudiante *estudiante);
+void modificarEstudiante(Estudiante *estudiante, const char *nuevoNombre, int nuevaEdad);
 
 #endif // ESTUDIANTES_H

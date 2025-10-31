@@ -1,88 +1,36 @@
 #include "estudiantes.h"
 #include <stdio.h>
 #include <stdlib.h>
-#define INICIAL_CAPACIDAD 10
-
-static void asegurarCapacidad(Estudiantes *lista)
-{
-    if (lista->cantidadGuardados < lista->capacidad)
-        return;
-
-    int nuevaCapacidad = (lista->capacidad == 0) ? INICIAL_CAPACIDAD : lista->capacidad * 2;
-    Estudiante *nuevoEstudiante = (Estudiante *)realloc(lista->data, nuevaCapacidad * sizeof(Estudiante));
-    if (nuevoEstudiante == NULL)
-    {
-        fprintf(stderr, "Error sin Memoria al redimensionar la lista\n");
-        exit(1);
-    }
-
-    lista->data = nuevoEstudiante;
-    lista->capacidad = nuevaCapacidad;
-}
-
-// Funcion para inicializar Estudiantes
-
-void inicializarListaDeEstudiantes(Estudiantes *lista)
-{
-    lista->data = NULL;
-    lista->cantidadGuardados = 0;
-    lista->capacidad = 0;
-    lista->next_id = 1;
-}
-
-// Funcion para Liberar la Lista
-
-void vaciarEstudiantes(Estudiantes *lista)
-{
-    free(lista->data);
-    lista->data = NULL;
-    lista->cantidadGuardados = 0;
-    lista->capacidad = 0;
-}
 
 // Funcion para dar de alta un Estudiante
-
-int altaEstudiante(Estudiantes *lista, const char *nombre, int edad)
+void altaEstudiante(Estudiante *estudiante, int id, const char *nombre, int edad)
 {
-    asegurarCapacidad(lista);
-
-    Estudiante nuevoEstudiante;
-    nuevoEstudiante.id = lista->next_id++;
-    snprintf(nuevoEstudiante.nombre, NOMBRE_MAX, "%s", nombre);
-
-    nuevoEstudiante.nombre[NOMBRE_MAX - 1] = '\0'; // Asegurar terminacion nula
-    nuevoEstudiante.edad = edad;
-
-    lista->data[lista->cantidadGuardados++] = nuevoEstudiante;
-    return nuevoEstudiante.id;
+    estudiante->id = id;
+    snprintf(estudiante->nombre, NOMBRE_MAX, "%s", nombre);
+    estudiante->nombre[NOMBRE_MAX - 1] = '\0'; // Asegurar terminacion nula
+    estudiante->edad = edad;
 }
 
-// Funcion para Buscar la posicion de un Estudiante dentro del arreglo por ID
-
-int buscarEstudiantePorID(const Estudiantes *lista, int id)
+// Funcion para Mostrar los Datos del Estudiante
+void mostrarEstudiante(const Estudiante *estudiante)
 {
-    for (int i = 0; i < lista->cantidadGuardados; i++)
-    {
-        if (lista->data[i].id == id)
-        {
-            return i;
-        }
-    }
-    return -1; // No encontrado
+    printf("\n == Datos del Estudiante ==\n");
+    printf("ID: %d\n", estudiante->id);
+    printf("Nombre: %s\n", estudiante->nombre);
+    printf("Edad: %d\n", estudiante->edad);
 }
 
-// Funcion para dar de Baja a un Estudiante por ID
-
-bool bajaEstudiante(Estudiantes *lista, int id)
+// Funcion para Modificar un Estudiante
+void modificarEstudiante(Estudiante *estudiante, const char *nuevoNombre, int nuevaEdad)
 {
-    int indiceEstudiante = buscarEstudiantePorID(lista, id);
-    if (indiceEstudiante == -1)
+    if (nuevoNombre && strlen(nuevoNombre) > 0)
     {
-        return false; // No encontrado
+        snprintf(estudiante->nombre, NOMBRE_MAX, "%s", nuevoNombre);
+        estudiante->nombre[NOMBRE_MAX - 1] = '\0'; // Asegurar terminacion nula
     }
 
-    // Mover el ultimo estudiante a la posicion del eliminado
-    lista->data[indiceEstudiante] = lista->data[lista->cantidadGuardados - 1];
-    lista->cantidadGuardados--;
-    return true;
+    if (nuevaEdad > 0 && nuevaEdad != estudiante->edad)
+    {
+        estudiante->edad = nuevaEdad;
+    }
 }
