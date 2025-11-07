@@ -19,16 +19,16 @@ typedef struct
     int cantidad;
     int capacidad;
     int next_id;
-} Materias;
+} ListaMaterias;
 
 // Funciones Principales
-void inicializarListaDeMaterias(Materias *listaMaterias);
-void liberarListaDeMaterias(Materias *listaMaterias);
+void inicializarListaDeMaterias(ListaMaterias *listaMaterias);
+void liberarListaDeMaterias(ListaMaterias *listaMaterias);
 
 // Funciones Basicas
-void altaMateria(Materias *listaMaterias, const char *nombre, int creditos);
-bool bajaMateria(Materias *listaMaterias, int id);
-bool modificarMateria(Materias *listaMaterias, int id, const char *nuevoNombre, int nuevosCreditos);
-void listarMaterias(const Materias *listaMaterias);
+int altaMateria(ListaMaterias *listaMaterias, const char *nombre, int creditos);
+bool bajaMateria(ListaMaterias *listaMaterias, int id);
+bool modificarMateria(ListaMaterias *listaMaterias, int id, const char *nuevoNombre, int nuevosCreditos);
+void listarMaterias(const ListaMaterias *listaMaterias);
 
 #endif // MATERIAS_H

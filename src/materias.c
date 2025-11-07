@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #define CAPACIDAD_INICIAL 5
 
-static void asegurarCapacidad(Materias *listaMaterias)
+static void asegurarCapacidad(ListaMaterias *listaMaterias)
 {
     if (listaMaterias->cantidad < listaMaterias->capacidad)
         return;
@@ -19,7 +19,7 @@ static void asegurarCapacidad(Materias *listaMaterias)
     listaMaterias->capacidad = nuevaCapacidad;
 }
 
-void inicializarListaDeMaterias(Materias *listaMaterias)
+void inicializarListaDeMaterias(ListaMaterias *listaMaterias)
 {
     free(listaMaterias->materias);
     listaMaterias->materias = NULL;
@@ -28,7 +28,7 @@ void inicializarListaDeMaterias(Materias *listaMaterias)
     listaMaterias->next_id = 1;
 }
 
-void liberarListaDeMaterias(Materias *listaMaterias)
+void liberarListaDeMaterias(ListaMaterias *listaMaterias)
 {
     free(listaMaterias->materias);
     listaMaterias->materias = NULL;
@@ -36,7 +36,7 @@ void liberarListaDeMaterias(Materias *listaMaterias)
     listaMaterias->capacidad = 0;
 }
 
-int altaMateria(Materias *listaMaterias, const char *nombre, int creditos)
+int altaMateria(ListaMaterias *listaMaterias, const char *nombre, int creditos)
 {
     asegurarCapacidad(listaMaterias);
     Materia nuevaMateria;
@@ -50,7 +50,7 @@ int altaMateria(Materias *listaMaterias, const char *nombre, int creditos)
 }
 
 // Funcion que nos Busca una Materia por su Id, y nos retorna su indice en el arreglo o -1 si no la encuentra
-static int buscarMateriaPorId(const Materias *listaMaterias, int id)
+static int buscarMateriaPorId(const ListaMaterias *listaMaterias, int id)
 {
     for (int i = 0; i < listaMaterias->cantidad; i++)
     {
@@ -60,7 +60,7 @@ static int buscarMateriaPorId(const Materias *listaMaterias, int id)
     return -1;
 }
 
-bool bajaMateria(Materias *listaMaterias, int id)
+bool bajaMateria(ListaMaterias *listaMaterias, int id)
 {
     int indiceMateria = buscarMateriaPorId(listaMaterias, id);
 
@@ -72,7 +72,7 @@ bool bajaMateria(Materias *listaMaterias, int id)
     return true;
 }
 
-bool modificarMateria(Materias *listaMaterias, int id, const char *nuevoNombre, int nuevosCreditos)
+bool modificarMateria(ListaMaterias *listaMaterias, int id, const char *nuevoNombre, int nuevosCreditos)
 {
     int indiceMateria = buscarMateriaPorId(listaMaterias, id);
 
@@ -91,14 +91,14 @@ bool modificarMateria(Materias *listaMaterias, int id, const char *nuevoNombre, 
     return true;
 }
 
-void listarMaterias(const Materias *listaMaterias)
+void listarMaterias(const ListaMaterias *listaMaterias)
 {
-    printf("\n == Listado de Materias (%d) ==\n", listaMaterias->cantidad);
+    printf("\n == Listado de ListaMaterias (%d) ==\n", listaMaterias->cantidad);
     printf("ID\tNombre\t\tCréditos\n");
     printf("-----------------------------------\n");
     for (int i = 0; i < listaMaterias->cantidad; i++)
     {
-        printf("%d\t%s\t\t%d\n", listaMaterias->materias[i].id,
+        printf("%d\t%-16s%d\n", listaMaterias->materias[i].id,
                listaMaterias->materias[i].nombre,
                listaMaterias->materias[i].creditos);
     }

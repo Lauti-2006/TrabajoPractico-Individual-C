@@ -1,5 +1,5 @@
-#ifndef ESTUDIANTES_H
-#define ESTUDIANTES_H
+#ifndef ESTUDIANTE_H
+#define ESTUDIANTE_H
 #include <stdbool.h>
 #define NOMBRE_MAX 50
 
@@ -16,4 +16,4 @@ void altaEstudiante(Estudiante *estudiante, int id, const char *nombre, int edad
 void mostrarEstudiante(const Estudiante *estudiante);
 void modificarEstudiante(Estudiante *estudiante, const char *nuevoNombre, int nuevaEdad);
 
-#endif // ESTUDIANTES_H
+#endif // ESTUDIANTE_H

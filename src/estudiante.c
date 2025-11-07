@@ -1,6 +1,7 @@
-#include "estudiantes.h"
+#include "estudiante.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // Funcion para dar de alta un Estudiante
 void altaEstudiante(Estudiante *estudiante, int id, const char *nombre, int edad)
