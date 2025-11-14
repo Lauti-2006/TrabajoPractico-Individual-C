@@ -4,7 +4,7 @@
 #include <string.h>
 #define CAPACIDAD_INICIAL 10
 
-static void asegurarCapacidad(ListaInscripciones *lista)
+void asegurarCapacidadInscripciones(ListaInscripciones *lista)
 {
     if (lista->cantidad < lista->capacidad)
         return;
@@ -75,7 +75,7 @@ bool inscribirEnMateria(ListaInscripciones *listaDeInscripciones, int idEstudian
             return false;
         }
     }
-    asegurarCapacidad(listaDeInscripciones);
+    asegurarCapacidadInscripciones(listaDeInscripciones);
     Inscripcion nuevaInscripcion;
     nuevaInscripcion.idEstudiante = idEstudiante;
     nuevaInscripcion.idMateria = idMateria;

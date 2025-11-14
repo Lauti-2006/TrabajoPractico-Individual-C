@@ -10,7 +10,7 @@ typedef struct
     float nota1;
     float nota2;
     float promedio;
-    char estado[20]; // "Promociona", "Final" o "Desaprobado"
+    char estado[50]; // "Promociona", "Final" o "Desaprobado"
 } Inscripcion;
 
 typedef struct
@@ -23,6 +23,7 @@ typedef struct
 // Funciones Principales
 void inicializarListaInscripciones(ListaInscripciones *lista);
 void liberarListaInscripciones(ListaInscripciones *lista);
+void asegurarCapacidadInscripciones(ListaInscripciones *lista);
 
 // Funciones Basicas
 bool inscribirEnMateria(ListaInscripciones *listaDeInscripciones, int idEstudiante, int idMateria);

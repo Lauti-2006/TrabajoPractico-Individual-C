@@ -24,6 +24,7 @@ typedef struct
 // Funciones Principales
 void inicializarListaDeMaterias(ListaMaterias *listaMaterias);
 void liberarListaDeMaterias(ListaMaterias *listaMaterias);
+void asegurarCapacidadMaterias(ListaMaterias *listaMaterias);
 
 // Funciones Basicas
 int altaMateria(ListaMaterias *listaMaterias, const char *nombre, int creditos);

@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #define CAPACIDAD_INICIAL 5
 
-static void asegurarCapacidad(ListaMaterias *listaMaterias)
+void asegurarCapacidadMaterias(ListaMaterias *listaMaterias)
 {
     if (listaMaterias->cantidad < listaMaterias->capacidad)
         return;
@@ -21,7 +21,6 @@ static void asegurarCapacidad(ListaMaterias *listaMaterias)
 
 void inicializarListaDeMaterias(ListaMaterias *listaMaterias)
 {
-    free(listaMaterias->materias);
     listaMaterias->materias = NULL;
     listaMaterias->cantidad = 0;
     listaMaterias->capacidad = 0;
@@ -38,7 +37,7 @@ void liberarListaDeMaterias(ListaMaterias *listaMaterias)
 
 int altaMateria(ListaMaterias *listaMaterias, const char *nombre, int creditos)
 {
-    asegurarCapacidad(listaMaterias);
+    asegurarCapacidadMaterias(listaMaterias);
     Materia nuevaMateria;
     nuevaMateria.id = listaMaterias->next_id++;
     snprintf(nuevaMateria.nombre, NOMBRE_MAX, "%s", nombre);
@@ -93,8 +92,8 @@ bool modificarMateria(ListaMaterias *listaMaterias, int id, const char *nuevoNom
 
 void listarMaterias(const ListaMaterias *listaMaterias)
 {
-    printf("\n == Listado de ListaMaterias (%d) ==\n", listaMaterias->cantidad);
-    printf("ID\tNombre\t\tCréditos\n");
+    printf("\n == Listado de Materias (%d) ==\n", listaMaterias->cantidad);
+    printf("ID\tNombre\t\tCreditos\n");
     printf("-----------------------------------\n");
     for (int i = 0; i < listaMaterias->cantidad; i++)
     {
