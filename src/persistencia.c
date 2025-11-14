@@ -36,12 +36,14 @@ void leerMateriasCSV(const char *rutaArchivo, ListaMaterias *listaDeMaterias)
     int id, creditos;
     char nombre[NOMBRE_MAX];
 
-    while (fscanf(archivo, "%d,%49[^,], %d", &id, nombre, &creditos) == 3)
+    while (fscanf(archivo, "%d,%80[^,],%d", &id, nombre, &creditos) == 3)
     {
+        nombre[NOMBRE_MAX - 1] = '\0'; // Asegurar terminación nula
         asegurarCapacidadMaterias(listaDeMaterias);
         Materia nuevaMateria;
         nuevaMateria.id = id;
         strcpy(nuevaMateria.nombre, nombre);
+        nuevaMateria.nombre[NOMBRE_MAX - 1] = '\0'; // Asegurar terminación nula
         nuevaMateria.creditos = creditos;
         listaDeMaterias->materias[listaDeMaterias->cantidad++] = nuevaMateria;
         if (id >= listaDeMaterias->next_id)

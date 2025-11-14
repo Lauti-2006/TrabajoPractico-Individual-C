@@ -44,8 +44,8 @@ void listarInscripciones(const ListaInscripciones *listaDeInscripciones, const L
     }
 
     printf("\n == Listado de Inscripciones (%d) ==\n", listaDeInscripciones->cantidad);
-    printf("Materia\t\tNota1\tNota2\tPromedio\tEstado\n");
-    printf("-----------------------------------\n");
+    printf("%-50s %-7s %-7s %-10s %-12s\n", "Materia", "Nota1", "Nota2", "Promedio", "Estado");
+    printf("--------------------------------------------------------------------------------------\n");
 
     for (int i = 0; i < listaDeInscripciones->cantidad; i++)
     {
@@ -60,7 +60,7 @@ void listarInscripciones(const ListaInscripciones *listaDeInscripciones, const L
                 break;
             }
         }
-        printf("%-15s\t%.2f\t%.2f\t%.2f\t\t%s\n", nombreMateria, insc->nota1, insc->nota2, insc->promedio, insc->estado);
+        printf("%-50s %-7.2f %-7.2f %-10.2f %-12s\n", nombreMateria, insc->nota1, insc->nota2, insc->promedio, insc->estado);
     }
 }
 

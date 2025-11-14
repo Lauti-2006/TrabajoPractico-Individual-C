@@ -93,11 +93,12 @@ bool modificarMateria(ListaMaterias *listaMaterias, int id, const char *nuevoNom
 void listarMaterias(const ListaMaterias *listaMaterias)
 {
     printf("\n == Listado de Materias (%d) ==\n", listaMaterias->cantidad);
-    printf("ID\tNombre\t\tCreditos\n");
-    printf("-----------------------------------\n");
+    printf("%-2s | %-50s | %2s\n","ID","Nombre","Creditos");
+    printf("-----------------------------------------------------------------------\n");
     for (int i = 0; i < listaMaterias->cantidad; i++)
     {
-        printf("%d\t%-16s%d\n", listaMaterias->materias[i].id,
+        printf("%-2d | %-50s | %2d\n",
+               listaMaterias->materias[i].id,
                listaMaterias->materias[i].nombre,
                listaMaterias->materias[i].creditos);
     }
