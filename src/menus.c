@@ -81,7 +81,7 @@ void menuCargaManual()
     ListaMaterias listaMaterias;
     ListaInscripciones listaInscripciones;
     inicializarListaDeMaterias(&listaMaterias);
-    inicializarListaDeInscripciones(&listaInscripciones);
+    inicializarListaInscripciones(&listaInscripciones);
 
     // SubMenu para la Carga Manual de Datos
     int subMenuDeFormaManual = -1;
@@ -116,6 +116,7 @@ void menuCargaManual()
 
         // Agregar Materia
         case 2:
+        {
             int creditos;
             char nombreDeLaMateria[NOMBRE_MAX];
             printf("Ingrese el Nombre de la Materia");
@@ -135,6 +136,7 @@ void menuCargaManual()
                 printf("Materia agregada con el ID: %d\n", idNuevaMateria);
             }
             break;
+        }
         }
     }
 }
