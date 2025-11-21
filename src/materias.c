@@ -93,7 +93,7 @@ bool modificarMateria(ListaMaterias *listaMaterias, int id, const char *nuevoNom
 void listarMaterias(const ListaMaterias *listaMaterias)
 {
     printf("\n == Listado de Materias (%d) ==\n", listaMaterias->cantidad);
-    printf("%-2s | %-50s | %2s\n","ID","Nombre","Creditos");
+    printf("%-2s | %-50s | %2s\n", "ID", "Nombre", "Creditos");
     printf("-----------------------------------------------------------------------\n");
     for (int i = 0; i < listaMaterias->cantidad; i++)
     {
@@ -102,4 +102,16 @@ void listarMaterias(const ListaMaterias *listaMaterias)
                listaMaterias->materias[i].nombre,
                listaMaterias->materias[i].creditos);
     }
+}
+
+bool existeMateria(ListaMaterias *listaMaterias, int idMateria)
+{
+    for (int i = 0; i < listaMaterias->cantidad; i++)
+    {
+        if (listaMaterias->materias[i].id == idMateria)
+        {
+            return true;
+        }
+    }
+    return false;
 }

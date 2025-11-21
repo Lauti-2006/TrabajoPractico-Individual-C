@@ -31,5 +31,6 @@ int altaMateria(ListaMaterias *listaMaterias, const char *nombre, int creditos);
 bool bajaMateria(ListaMaterias *listaMaterias, int id);
 bool modificarMateria(ListaMaterias *listaMaterias, int id, const char *nuevoNombre, int nuevosCreditos);
 void listarMaterias(const ListaMaterias *listaMaterias);
+bool existeMateria(ListaMaterias *listaMaterias, int idMateria);
 
 #endif // MATERIAS_H

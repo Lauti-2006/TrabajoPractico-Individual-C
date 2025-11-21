@@ -30,5 +30,6 @@ bool inscribirEnMateria(ListaInscripciones *listaDeInscripciones, int idEstudian
 void listarInscripciones(const ListaInscripciones *listaDeInscripciones, const ListaMaterias *listaDeMaterias);
 bool registrarNotas(ListaInscripciones *listaDeInscripciones, int idMateria, float nota1, float nota2);
 void calcularEstado(Inscripcion *inscripcion);
+bool verificarSiElAlumnoEstaInscriptoEnUnaMateria(ListaInscripciones *listainscripciones, int idDelAlumno, int idDeLaMateria);
 
 #endif // INSCRIPCIONES_H

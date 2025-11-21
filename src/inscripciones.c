@@ -123,3 +123,15 @@ void calcularEstado(Inscripcion *inscripcion)
         strcpy(inscripcion->estado, "Desaprobado");
     }
 }
+
+bool verificarSiElAlumnoEstaInscriptoEnUnaMateria(ListaInscripciones *listainscripciones, int idDelAlumno, int idDeLaMateria)
+{
+    for (int i = 0; i < listainscripciones->cantidad; i++)
+    {
+        if (listainscripciones->inscripciones[i].idEstudiante == idDelAlumno && listainscripciones->inscripciones[i].idMateria == idDeLaMateria)
+        {
+            return true;
+        }
+    }
+    return false;
+}
