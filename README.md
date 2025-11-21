@@ -7,7 +7,7 @@ Este Proyecto implementa un "Sistema Académico Personal" desarrollado en lengua
 * Gestionar un unico estudiante. 
 * Administrar materias (alta, modificacion y listado).
 * Inscribir al estudiante en materias.
-* Registrar notas y determinaar estados (promoción, final, deasaprobado).
+* Registrar notas y determinar estados (promoción, final, deasaprobado).
 * Guardar y leer datos para archivos CSV para persistencia.
 
 ### Modo de uso
