@@ -10,7 +10,7 @@ Estudiante leerEstudianteCSV(const char *rutaArchivo)
     FILE *archivo = fopen(rutaArchivo, "r");
     if (!archivo)
     {
-        printf("No se pudo Abrir el Archivo %s\n", rutaArchivo);
+        printf("No se Pudo Abrir. Primero debe Exportar los Datos %s\n", rutaArchivo);
         exit(1);
     }
 
@@ -26,7 +26,7 @@ void leerMateriasCSV(const char *rutaArchivo, ListaMaterias *listaDeMaterias)
     FILE *archivo = fopen(rutaArchivo, "r");
     if (!archivo)
     {
-        printf("No se pudo Abrir el Archivo %s\n", rutaArchivo);
+        printf("No se Pudo Abrir. Primero debe Exportar los Datos %s\n", rutaArchivo);
         exit(1);
     }
 
@@ -59,7 +59,7 @@ void leerInscripcionesCSV(const char *rutaArchivo, ListaInscripciones *listaDeIn
     FILE *archivo = fopen(rutaArchivo, "r");
     if (!archivo)
     {
-        printf("No se pudo Abrir el Archivo %s\n", rutaArchivo);
+        printf("No se Pudo Abrir. Primero debe Exportar los Datos %s\n", rutaArchivo);
         exit(1);
     }
 
@@ -81,6 +81,59 @@ void leerInscripcionesCSV(const char *rutaArchivo, ListaInscripciones *listaDeIn
         nuevaInscripcion.promedio = promedio;
         strcpy(nuevaInscripcion.estado, estado);
         listaDeInscripciones->inscripciones[listaDeInscripciones->cantidad++] = nuevaInscripcion;
+    }
+    fclose(archivo);
+}
+
+void guardarEstudianteCSV(const char *ruta, Estudiante *estudiante)
+{
+    FILE *archivo = fopen(ruta, "w");
+    if (!archivo)
+    {
+        printf("No Se Pudo Guardar el Archivo\n");
+        return;
+    }
+    fprintf(archivo, "id,nombre,edad\n");
+    fprintf(archivo, "%d,%s,%d\n", estudiante->id, estudiante->nombre, estudiante->edad);
+    fclose(archivo);
+}
+
+void guardarMateriasCSV(const char *ruta, ListaMaterias *listaMaterias)
+{
+    FILE *archivo = fopen(ruta, "w");
+    if (!archivo)
+    {
+        printf("No se Pudo Guardar el Archivo\n");
+        return;
+    }
+    fprintf(archivo, "id,nombre,creditos\n");
+    for (int i = 0; i < listaMaterias->cantidad; i++)
+    {
+        Materia *materia = &listaMaterias->materias[i];
+        fprintf(archivo, "%d,%s,%d\n", materia->id, materia->nombre, materia->creditos);
+    }
+    fclose(archivo);
+}
+
+void guardarInscripcionesCSV(const char *ruta, ListaInscripciones *listaInscripciones)
+{
+    FILE *archivo = fopen(ruta, "w");
+    if (!archivo)
+    {
+        printf("No se Pudo Guardar el Archivo\n");
+        return;
+    }
+    fprintf(archivo, "idEstudiante,idMateria,nota1,nota2,promedio,estado\n");
+    for (int i = 0; i < listaInscripciones->cantidad; i++)
+    {
+        Inscripcion *inscripcion = &listaInscripciones->inscripciones[i];
+        fprintf(archivo, "%d,%d,%.2f,%.2f,%.2f,%s\n",
+                inscripcion->idEstudiante,
+                inscripcion->idMateria,
+                inscripcion->nota1,
+                inscripcion->nota2,
+                inscripcion->promedio,
+                inscripcion->estado);
     }
     fclose(archivo);
 }

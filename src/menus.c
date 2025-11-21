@@ -10,7 +10,7 @@ void mostrarMenuPrincipal()
     {
         printf("\n== Sistema Academico ==\n");
         printf("Menu Principal:\n");
-        printf("A) Usar el Programa con los CSV Pre-cargados\n");
+        printf("A) Usar el Programa con los CSV ya Alamacenados\n");
         printf("B) Cargar Datos Manualmente, Visualizarlos y Exportarlos \n");
         printf("X) Salir\n");
         printf("Seleccione una opcion: ");
@@ -27,7 +27,7 @@ void mostrarMenuPrincipal()
     } while (opcionMenuPrincipal != 'X' && opcionMenuPrincipal != 'x');
 }
 
-// Opcion A: Precargar CSV
+// Opcion A: Usar el Programa con los CSV ya Almacenados
 void menuCSV()
 {
     printf("Cargando Datos de CSV.....\n");
@@ -35,11 +35,31 @@ void menuCSV()
     ListaMaterias listaMaterias;
     ListaInscripciones listaInscripciones;
 
-    estudiante = leerEstudianteCSV("../data/estudiante.csv");
-    leerMateriasCSV("../data/materias.csv", &listaMaterias);
-    leerInscripcionesCSV("../data/inscripciones.csv", &listaInscripciones);
-
-    printf("Datos Cargados Exitosamente!\n");
+    int opcionCSV = -1;
+    printf("\n -- SubMenu Carga de CSV Almacenados --\n");
+    printf("1. CSV Precargado por el Alumno\n");
+    printf("2. CSV Exportado luego de Carga Manual\n");
+    printf("Elija una Opcion: ");
+    scanf("%d", &opcionCSV);
+    if (opcionCSV == 1)
+    {
+        estudiante = leerEstudianteCSV("../data/datosPrecargados/estudiante.csv");
+        leerMateriasCSV("../data/datosPrecargados/materias.csv", &listaMaterias);
+        leerInscripcionesCSV("../data/datosPrecargados/inscripciones.csv", &listaInscripciones);
+        printf("Datos Cargados Exitosamente!\n");
+    }
+    else if (opcionCSV == 2)
+    {
+        estudiante = leerEstudianteCSV("../data/datosExportados/estudiante.csv");
+        leerMateriasCSV("../data/datosExportados/materias.csv", &listaMaterias);
+        leerInscripcionesCSV("../data/datosExportados/inscripciones.csv", &listaInscripciones);
+        printf("Datos Cargados Exitosamente!\n");
+    }
+    else
+    {
+        printf("La Opcion es Invalida, Volviendo al Menu Principal...\n");
+        return;
+    }
 
     // SubMenu para Mostrar los Datos Cargados
     int opcionSubMenu = -1;
@@ -122,22 +142,18 @@ void menuCargaManual()
         {
         // Agregar Estudiante
         case 1:
-            // printf("Ingrese el Nombre del Estudiante: ");
-            // fgets(estudiante.nombre, NOMBRE_MAX, stdin);
-            // estudiante.nombre[strcspn(estudiante.nombre, "\n")] = '\0';
-            // printf("Ingrese Edad del Estudiante: ");
-            // scanf("%d", &estudiante.edad);
-            // while (estudiante.edad < 0 || estudiante.edad < 17)
-            // {
-            //     printf("La Edad Ingresada No es Valida (debe ser positiva y mayor a 17)\n");
-            //     printf("Ingrese Edad del Estudiante: ");
-            //     scanf("%d", &estudiante.edad);
-            // }
-            // getchar();
-            estudiante.id = 1;
-            strcpy(estudiante.nombre, "Nestor Serna");
-            estudiante.edad = 32;
-            printf("Estudiante Agregado Correctamente\n");
+            printf("Ingrese el Nombre del Estudiante: ");
+            fgets(estudiante.nombre, NOMBRE_MAX, stdin);
+            estudiante.nombre[strcspn(estudiante.nombre, "\n")] = '\0';
+            printf("Ingrese Edad del Estudiante: ");
+            scanf("%d", &estudiante.edad);
+            while (estudiante.edad < 0 || estudiante.edad < 17)
+            {
+                printf("La Edad Ingresada No es Valida (debe ser positiva y mayor a 17)\n");
+                printf("Ingrese Edad del Estudiante: ");
+                scanf("%d", &estudiante.edad);
+            }
+            getchar();
             break;
 
         // Agregar Materia
@@ -146,18 +162,15 @@ void menuCargaManual()
             asegurarCapacidadMaterias(&listaMaterias);
             int creditos;
             char nombreDeLaMateria[NOMBRE_MAX];
-            // printf("Ingrese el Nombre de la Materia: ");
-            // fgets(nombreDeLaMateria, NOMBRE_MAX, stdin);
-            // nombreDeLaMateria[strcspn(nombreDeLaMateria, "\n")] = '\0';
-            // printf("Ingrese Creditos: ");
-            // scanf("%d", &creditos);
-            // getchar();
-            creditos = 3;
-            strcpy(nombreDeLaMateria, "Biologia");
+            printf("Ingrese el Nombre de la Materia: ");
+            fgets(nombreDeLaMateria, NOMBRE_MAX, stdin);
+            nombreDeLaMateria[strcspn(nombreDeLaMateria, "\n")] = '\0';
+            printf("Ingrese Creditos: ");
+            scanf("%d", &creditos);
+            getchar();
 
             int idNuevaMateria = altaMateria(&listaMaterias, nombreDeLaMateria, creditos);
-            creditos = 5;
-            strcpy(nombreDeLaMateria, "Fisica");
+
             idNuevaMateria = altaMateria(&listaMaterias, nombreDeLaMateria, creditos);
 
             if (idNuevaMateria == -1)
@@ -233,7 +246,8 @@ void menuCargaManual()
                         printf("Intentelo Nuevamente\n");
                     }
                 } while (!verificarSiElAlumnoEstaInscriptoEnUnaMateria(&listaInscripciones, estudiante.id, idMateriaSeleccionada) || !existeMateria(&listaMaterias, idMateriaSeleccionada));
-                if (idMateriaSeleccionada == 0) break;
+                if (idMateriaSeleccionada == 0)
+                    break;
 
                 // Si llegamos a este punto, y esta inscripto, entonces pedimos la Nota 1 y la Nota 2
 
@@ -241,7 +255,7 @@ void menuCargaManual()
                 scanf("%f", &nota1);
                 while (nota1 < 1 || nota1 > 10)
                 {
-                    printf("Nota Incorrecta, la Nota debe estar entre 1 y 10, vuelva a intentarlo\n");
+                    printf("Nota Incorrecta, la Nota debe estar entre 1 y 10, vuelva a intentarlo: ");
                     getchar;
                     scanf("%f", &nota1);
                 }
@@ -249,7 +263,7 @@ void menuCargaManual()
                 scanf("%f", &nota2);
                 while (nota2 < 1 || nota2 > 10)
                 {
-                    printf("Nota Incorrecta, la Nota debe estar entre 1 y 10, vuelva a intentarlo\n");
+                    printf("Nota Incorrecta, la Nota debe estar entre 1 y 10, vuelva a intentarlo: ");
                     scanf("%f", &nota2);
                 }
                 registrarNotas(&listaInscripciones, idMateriaSeleccionada, nota1, nota2);
@@ -269,6 +283,16 @@ void menuCargaManual()
                 printf("Debe Ingresar Informacion Primero\n");
                 break;
             }
+            break;
+        case 6:
+            guardarEstudianteCSV("../data/datosExportados/estudiante.csv", &estudiante);
+            guardarMateriasCSV("../data/datosExportados/materias.csv", &listaMaterias);
+            guardarInscripcionesCSV("../data/datosExportados/inscripciones.csv", &listaInscripciones);
+            printf("Datos Exportados Correctamente\n");
+            break;
+
+        default:
+            printf("Opcion Invalida, Intentelo Nuevamente\n");
             break;
         }
     }

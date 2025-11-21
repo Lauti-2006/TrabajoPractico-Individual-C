@@ -1,67 +1,72 @@
-Consigna del TP final:
+# Sistema Académico Personal
 
+## Descripcion del Proyecto
+Este sistema amplia el trabajo original de “Estudiantes” transformándolo en una aplicación de gestión académica personal. Permite trabajar con estructuras de datos, relaciones entre entidades (Estudiante-Materia), persistencia en archivos CSV para reportes y estadísticas aplicando los fundamentos del TP general, pero con mayor alcance funcional.
 
-Desarrollar un sistema de estudiantes en C. Debe permitir:
+Este Proyecto implementa un "Sistema Académico Personal" desarrollado en lenguaje c, que permite: 
+* Gestionar un unico estudiante. 
+* Administrar materias (alta, modificacion y listado).
+* Inscribir al estudiante en materias.
+* Registrar notas y determinaar estados (promoción, final, deasaprobado).
+* Guardar y leer datos para archivos CSV para persistencia.
 
+### Modo de uso
+El progrma cuenta con dos moodos de usos:
+- Opción A: Cargar datos desde CSV existente.
+- Opción B: Cargar datos manualmente y exportar a CSV.
 
-CRUD: Create Read Update Delete List
+## Estructura del Proyecto
+![Árbol de Carpetas y Archivos](img/Captura-Estructura-Proyecto.png)
 
-ABM: Alta Baja Modificación
+## Funcionalidades Principales
 
+### Estudiante
+* Alta.
+* Mostrar Datos.
 
--Dar de alta, modificar, eliminar y listar estudiantes
+### Materias
+* Alta.
+* Listado. 
+* Validaciones. 
 
--Buscar estudiantes por nombre
+### Inscripciones 
+* Inscrbir Estudiante en Materias.
+* Registrar Notas. 
+* Calcular Estados: Promociona, Final, Desaprobado.
 
--Buscar estudiantes por rango de edad
+### Persistencia
+* Leer Estudiantes, Materias e Inscripciones desde CSV. 
+* Exportar todos los datos a Archivos CSV.
 
+## Intrucciones para la Ejecucion 
 
-Además cada estudiante puede anotarse en N materias.
+Dentro de la carpeta 'src' compilar todos los archivos.c con el siguiente comando: 
+```
+gcc *.c -o programa.exe
+```
 
--Dar de alta, modificar, eliminar y listar materias
+Y ejecutar: 
+```
+.\programa.exe
+```
 
--Anotarse en una materia
+Nota: Al querer recompilar el código es recomendable eliminar el archvio "programa.exe." para evitar cualquier tipo de error.
 
--Rendir una materia
+## Lógica de Ejecución
+**Opcion A: Usar Programa con CSV Almacenado**
+Permite elegir si cargar: 
+* Los archivos CSV precargados por el alumno, o 
+* Los archivos CSV exportados por el usuario 
 
+**Opcion B: Cargar Datos Manualmente, Visualizarlos y Exportarlos**
+Permite agregar los sigientes datos:
+* El nombre y la edad del Estudiante.
+* La materia.
+* Inscribir Estudiante en Materia.
+* Registar Notas.
+* Y Mostrar Todo los datos.
 
-El sistema debe poder soportar un gran listado de estudiantes y materias. Utilizar estructuras de datos para almacenar los listados. Decidir si se utiliza ordenamiento de los datos.
+## Descripcion General de cómo funcionan el sistema de calificacion de notas
 
+Si la Nota 1 (Primer Parcial) y la Nota 2 (Segundo Parcial) es mayor o igual a 7, la materia esta Promocionada. En cambio, si en ambas notas son mayor igual a 4, pero menores a 7, entonces se rinde final completo de la materia. En cualquier otro caso, la materia esta desaprobada.
 
-El diseño del sistema y los modelos son libres. Utilizar la creatividad para que el manejo del sistema sea lo más práctico posible.
-
-
-La única limitación respecto al uso de librerías es que la estructura de datos que usen sea de desarrollo propio.
-
-
-Si los requerimientos planteados son cumplidos, el ejercicio está aprobado (nota 4). Puede pasar que en situaciones en la que la cantidad de datos sea muy grande, el sistema sea inmanejable. En ese caso, detallar las limitaciones de la solución propuesta (si las limitaciones son reconocidas no se considera desaprobado el punto). Agregar en el README del repositorio.
-
-
-Hasta este punto, todos los estudiantes deben presentar este trabajo para poder aprobar la materia.
-
-
-Ideas no-obligatorias de implementar pero que suman puntos: 
-
-utilizar paginado
-
-poder elegir el estudiante/materia de un listado reducido
-
-generar estudiantes de prueba y materias aleatorias de forma masiva
-
-estadísticas de los estudiantes y materias, etc.
-
-árboles de correlatividad de materias
-
-qué pasa si una materia anterior está desaprobada? Puede anotarse? 
-
-cálculo de promedios. 
-
-archivo de configuración general donde se especifican las variables del sistema.
-
-mejoras en la interfaz de usuario
-
-tests unitarios
-
-Persistencia en CSV
-
-(cualquier otra feature que quieran agregar)
