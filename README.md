@@ -11,7 +11,7 @@ Este Proyecto implementa un "Sistema Académico Personal" desarrollado en lengua
 * Guardar y leer datos para archivos CSV para persistencia.
 
 ### Modo de uso
-El progrma cuenta con dos moodos de usos:
+El programa cuenta con dos modos de usos:
 - Opción A: Cargar datos desde CSV existente.
 - Opción B: Cargar datos manualmente y exportar a CSV.
 
@@ -30,7 +30,7 @@ El progrma cuenta con dos moodos de usos:
 * Validaciones. 
 
 ### Inscripciones 
-* Inscrbir Estudiante en Materias.
+* Inscribir Estudiante en Materias.
 * Registrar Notas. 
 * Calcular Estados: Promociona, Final, Desaprobado.
 
@@ -50,7 +50,7 @@ Y ejecutar:
 .\programa.exe
 ```
 
-Nota: Al querer recompilar el código es recomendable eliminar el archvio "programa.exe." para evitar cualquier tipo de error.
+Nota: Al querer recompilar el código es recomendable eliminar el archivo "programa.exe." para evitar cualquier tipo de error.
 
 ## Lógica de Ejecución
 **Opcion A: Usar Programa con CSV Almacenado**
@@ -64,9 +64,9 @@ Permite agregar los sigientes datos:
 * La materia.
 * Inscribir Estudiante en Materia.
 * Registar Notas.
-* Y Mostrar Todo los datos.
+* Y Mostrar Todos los datos.
 
 ## Descripcion General de cómo funcionan el sistema de calificacion de notas
 
-Si la Nota 1 (Primer Parcial) y la Nota 2 (Segundo Parcial) es mayor o igual a 7, la materia esta Promocionada. En cambio, si en ambas notas son mayor igual a 4, pero menores a 7, entonces se rinde final completo de la materia. En cualquier otro caso, la materia esta desaprobada.
+Si la Nota 1 (Primer Parcial) y la Nota 2 (Segundo Parcial) es mayor o igual a 7, la materia esta Promocionada. En cambio, si las notas son mayor igual a 4 y menores a 7, entonces se rinde final completo de la materia. En cualquier otro caso, la materia esta desaprobada.
 
