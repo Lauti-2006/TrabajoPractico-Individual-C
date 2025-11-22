@@ -10,7 +10,7 @@ void mostrarMenuPrincipal()
     {
         printf("\n== Sistema Academico ==\n");
         printf("Menu Principal:\n");
-        printf("A) Usar el Programa con los CSV ya Alamacenados\n");
+        printf("A) Usar el Programa con los CSV ya Almacenados\n");
         printf("B) Cargar Datos Manualmente, Visualizarlos y Exportarlos \n");
         printf("X) Salir\n");
         printf("Seleccione una opcion: ");
@@ -154,6 +154,8 @@ void menuCargaManual()
                 scanf("%d", &estudiante.edad);
             }
             getchar();
+            estudiante.id = 1;
+            printf("Estudiante Agregado Correctamente\n");
             break;
 
         // Agregar Materia
@@ -170,8 +172,6 @@ void menuCargaManual()
             getchar();
 
             int idNuevaMateria = altaMateria(&listaMaterias, nombreDeLaMateria, creditos);
-
-            idNuevaMateria = altaMateria(&listaMaterias, nombreDeLaMateria, creditos);
 
             if (idNuevaMateria == -1)
             {

@@ -66,7 +66,18 @@ Permite agregar los sigientes datos:
 * Registar Notas.
 * Y Mostrar Todos los datos.
 
-## Descripcion General de cómo funcionan el sistema de calificacion de notas
+## Reglas de Negocio
+* Se almacena un unico estudiante.
+* El estudiante puede inscribirse a un numero no limitado de materias.
+* Si ambas Notas (Primer Parcial y Segundo Parcial) son mayores o iguales a 7, el estudiante *Promociona*.
+* Si el promedio es mayor o igual a 4, pero no promociona, debe rendir *Final*.
+* Si el promedio es menor a 4, la materia queda *Desaprobada*.
 
-Si la Nota 1 (Primer Parcial) y la Nota 2 (Segundo Parcial) es mayor o igual a 7, la materia esta Promocionada. En cambio, si las notas son mayor igual a 4 y menores a 7, entonces se rinde final completo de la materia. En cualquier otro caso, la materia esta desaprobada.
+## Validaciones 
+* Estudiante: Se verifica que la edad ingresada sea positiva y mayor o igual 17.
+* Inscripcion: 
+1. Se verfica que la materia en la que se desea inscribir exista. 
+2. Al registrar las notas, que esten en el rango 1~10.
+3. Al intentar registrar una nota, se verifica que el alumno este inscripto en la materia.
+
 
